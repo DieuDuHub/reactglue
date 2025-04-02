@@ -7,7 +7,7 @@ export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: "(tabs)",
 };
-
+import React,{useContext} from "react";
 import { Stack } from "expo-router";
 
 export default function AppLayout() {
