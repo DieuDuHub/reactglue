@@ -17,7 +17,7 @@ const redirectUri = AuthSession.makeRedirectUri({
 
 // Keycloak details
 //const keycloakUri = "http://192.168.1.18:8083";
-const keycloakUri= "http://192.168.64.1:8083";
+const keycloakUri= "http://192.168.1.17:8083";
 const keycloakRealm = "ecommerce";
 const clientId = "mo";
 

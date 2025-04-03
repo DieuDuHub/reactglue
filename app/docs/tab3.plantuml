@@ -1,0 +1,47 @@
+@startuml
+skinparam componentStyle rectangle
+
+package "Authentication Flow" {
+    component "App Component" {
+        note right of "App Component"
+            - Handles UI and state
+            - Manages login, refresh, and logout
+        end note
+    }
+
+    component "AuthSession" {
+        note right of "AuthSession"
+            - fetchDiscoveryAsync
+            - AuthRequest
+            - exchangeCodeAsync
+            - refreshAsync
+            - revokeAsync
+        end note
+    }
+
+    component "SecureStore" {
+        note right of "SecureStore"
+            - Stores accessToken securely
+            - Retrieves accessToken
+        end note
+    }
+
+    component "WebBrowser" {
+        note right of "WebBrowser"
+            - Handles logout via openAuthSessionAsync
+        end note
+    }
+
+    component "Keycloak Server" {
+        note right of "Keycloak Server"
+            - Provides OIDC endpoints
+            - Handles authentication and token management
+        end note
+    }
+}
+
+"App Component" --> "AuthSession" : Uses for login, refresh, and logout
+"AuthSession" --> "Keycloak Server" : Communicates with OIDC endpoints
+"App Component" --> "SecureStore" : Stores and retrieves tokens
+"App Component" --> "WebBrowser" : Opens logout session
+"WebBrowser" --> "Keycloak Server" : Handles logout redirection

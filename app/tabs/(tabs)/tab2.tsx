@@ -35,24 +35,26 @@ export default function Tab2() {
     asyncFunc();
   }); 
 
-const url = "http://localhost:8000/api/anys?date=2020-04-09T09:00:56Z&page=2&limit=10"
+const url = "http://192.168.1.17/api/anys?date=2020-04-09T09:00:56Z&page=2&limit=10"
 
   useEffect(() => {
     if (results !== null) { // No oauth , no data
-    fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      Authorization: `Bearer ${results}`}})
-        .then((response) => response.json())
-        .then((responseJson) => {
-          console.log('responseJson',responseJson)
-          setPolicies(responseJson);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-      }
+      console.log('results',results)
+      fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        Authorization: `Bearer ${results}`}})
+          .then((response) => response.json())
+          .then((responseJson) => {
+            console.log('responseJson',responseJson)
+            setPolicies(responseJson);
+          })
+          .catch((error) => {
+            //console.error(error);
+            
+          });
+        }
 
   } , [results]);
 
@@ -61,11 +63,21 @@ const url = "http://localhost:8000/api/anys?date=2020-04-09T09:00:56Z&page=2&lim
   return (
     <Box>
     <VStack className="w-full justify-between">
-      Policy
+      <Text>Policy</Text>
       {
         policies && policies.map((policy) => {
+          let pol = {
+            id: policy["content"]["_id"]["$oid"],
+            name: policy["content"]["policy"]["name"],
+            description: policy["content"]["policy"]["description"],
+            productname: policy["content"]["policy"]["product"]["name"],
+            firstname: policy["content"]["policy"]["firstname"],
+            integration: policy["content"]["integrationDate"]["$date"],
+            country: policy["content"]["policy"]["country"] || "Unknown" ,
+            status : "Active"  
+          }
           return (  
-            <Policycard  key={policy["content"]["_id"]["$oid"]}  id={policy["content"]["_id"]["$oid"] } name = {policy["content"]["policy"]["name"]} description=""/>
+            <Policycard  key={policy["content"]["_id"]["$oid"]}  {...pol} description=""/>
           )
         })
       } 
