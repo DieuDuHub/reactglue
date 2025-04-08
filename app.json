@@ -8,15 +8,20 @@
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "developmentClient": false,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.anonymous.test-expo"
+      "bundleIdentifier": "com.debraymatthieu.Expo",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.debraymatthieu.Expo"
     },
     "web": {
       "bundler": "metro",
@@ -38,6 +43,14 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {
+        "origin": false
+      },
+      "eas": {
+        "projectId": "d58a5bad-2e6f-4e2b-a233-04b9ab29dbd7"
+      }
     }
   }
 }
