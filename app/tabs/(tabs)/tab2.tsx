@@ -18,8 +18,8 @@ import { VStack } from "@/components/ui/vstack";
 import { ScrollView, RefreshControl } from "react-native";
 import React, { useEffect, useState, useCallback } from "react";
 
-import Policycard from "@/components/PolicyCard";
-import PolicyFilter from  "@/components/PolicyFilter";
+import Policycard from "@/app/components/PolicyCard";
+import PolicyFilter from  "@/app/components/PolicyFilter";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { StyleSheet } from "react-native";
 

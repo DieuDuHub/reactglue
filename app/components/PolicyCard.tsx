@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Pressable, Image,StyleSheet } from 'react-native';
-import { Card } from './ui/card';
-import { Heading } from './ui/heading';
-import { Text } from './ui/text';
-import { Box } from './ui/box';
+import { Card } from '../../components/ui/card';
+import { Heading } from '../../components/ui/heading';
+import { Text } from '../../components/ui/text';
+import { Box } from '../../components/ui/box';
 import moment from 'moment';
 import LinearGradient from 'react-native-linear-gradient';
 import { Icon, EyeIcon } from "@/components/ui/icon"
-import { View } from './ui/view';
+import { View } from '../../components/ui/view';
 
 function showEye() {
   return <Icon as={EyeIcon} size="xl" />
@@ -27,13 +27,13 @@ type Policy = {
 
 const getProductImage = (productid: string) => {
   const images: { [key: string]: any } = {
-    "1": require("../assets/images/biz/train.png"),
-    "2": require("../assets/images/biz/avion.png"),
-    "3": require("../assets/images/biz/bagage.png"),
+    "1": require("@/assets/images/biz/train.png"),
+    "2": require("@/assets/images/biz/avion.png"),
+    "3": require("@/assets/images/biz/bagage.png"),
     // Ajoutez d'autres mappings ici
   };
 
-  return images[productid] || require("../assets/images/biz/avion.png"); // Image par défaut
+  return images[productid] || require("@/assets/images/biz/avion.png"); // Image par défaut
 };
 
 export default function Policycard(props: Policy) {

@@ -6,7 +6,7 @@ import { Text } from "@/components/ui/text";
 import { HStack } from "@/components/ui/hstack";
 import { Card } from "@/components/ui/card";
 import { Box } from "@/components/ui/box";
-import Policycard from "@/components/PolicyCard";
+import Policycard from "@/app/components/PolicyCard";
 
 let pol = {
   id: "42654643563",
