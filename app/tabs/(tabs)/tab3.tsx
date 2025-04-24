@@ -8,18 +8,32 @@ import {
 import * as AuthSession from "expo-auth-session";
 import * as WebBrowser from "expo-web-browser";
 import { useEffect, useState } from "react";
-import * as SecureStore from 'expo-secure-store';
+
+// storage.js
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+function getItem(key) {
+  return AsyncStorage.getItem(key);
+}
 
 WebBrowser.maybeCompleteAuthSession();
+/*
 const redirectUri = AuthSession.makeRedirectUri({
-  useProxy: true,
-});
+  useProxy: false,
+});*/
+const redirectUri = "myapp://redirect";
 
 // Keycloak details
 //const keycloakUri = "http://192.168.1.18:8083";
-const keycloakUri= "http://192.168.1.17:8083";
+//const keycloakUri= "http://192.168.1.17:8083";
+//const keycloakUri="http://192.168.64.1:8083";
 const keycloakRealm = "ecommerce";
+
+//const keycloakUri="http://192.168.1.33:8080";
+const keycloakUri = process.env.EXPO_PUBLIC_KEYCLOAK_URI; // Use the environment variable
+//const keycloakUri="http://88.178.213.6:49153";
 const clientId = "mo";
+//const clientId = "webapp";
 
 export function generateShortUUID() {
   return Math.random().toString(36).substring(2, 15);
@@ -42,6 +56,14 @@ export default function App() {
     };
     getDiscoveryDocument();
   }, []);
+
+  const storeToken = async (token: string) => {
+    try {
+      await AsyncStorage.setItem("accesstoken", token);
+    } catch (error) {
+      console.error("Error storing access token", error);
+    }
+  };
 
   const login = async () => {
     const state = generateShortUUID();
@@ -75,7 +97,7 @@ export default function App() {
       );
 
       setAccessToken(tokenResult.accessToken);
-      await SecureStore.setItemAsync("accesstoken", tokenResult.accessToken);
+      storeToken(tokenResult.accessToken);
       setIdToken(tokenResult.idToken);
       setRefreshToken(tokenResult.refreshToken);
     }
@@ -90,7 +112,7 @@ export default function App() {
       refreshTokenObject,
       discoveryResult!
     );
-
+    storeToken(tokenResult.accessToken);
     setAccessToken(tokenResult.accessToken);
     setIdToken(tokenResult.idToken);
     setRefreshToken(tokenResult.refreshToken);

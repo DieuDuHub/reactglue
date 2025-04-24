@@ -6,7 +6,19 @@ import { Text } from "@/components/ui/text";
 import { HStack } from "@/components/ui/hstack";
 import { Card } from "@/components/ui/card";
 import { Box } from "@/components/ui/box";
-import Policycard from "@/components/Policycard";
+import Policycard from "@/components/PolicyCard";
+
+let pol = {
+  id: "42654643563",
+  name: "Deb",
+  description: "description",
+  productname: "product name",
+  productid: "product Id",
+  firstname: "firstname",
+  integration: "integration",
+  country: "country",
+  status: "Active"
+};
 
 export default function Tab2() {
   return (
@@ -31,7 +43,7 @@ export default function Tab2() {
     </HStack>
     <Box className="w-100 h-100 bg-primary-500 bg-secondary-300 bg-tertiary-600">
       <HStack className="flex-wrap justify-center " >
-        <Policycard />
+        <Policycard key={pol.id} {...pol} />
       </HStack>
     </Box>
       <HStack className="w-full justify-between">
