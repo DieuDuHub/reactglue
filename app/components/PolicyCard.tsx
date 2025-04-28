@@ -5,7 +5,7 @@ import { Heading } from '../../components/ui/heading';
 import { Text } from '../../components/ui/text';
 import { Box } from '../../components/ui/box';
 import moment from 'moment';
-import LinearGradient from 'react-native-linear-gradient';
+//import LinearGradient from 'react-native-linear-gradient';
 import { Icon, EyeIcon } from "@/components/ui/icon"
 import { View } from '../../components/ui/view';
 
@@ -44,16 +44,7 @@ export default function Policycard(props: Policy) {
       onPressIn={() => setIsPressed(true)} // Détecte le début de l'interaction
       onPressOut={() => setIsPressed(false)} // Réinitialise après l'interaction
     >
-      <LinearGradient
-        colors={
-          isPressed
-            ? ['#fcfcfc', '#dddddd'] // Violet à bleu (quand pressé)
-            : ['#dddddd', '#fcfcfc'] // Bleu à violet (par défaut)
-        }
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-        style={styles.cardGradient}
-      >
+
       <Card
         size="md"
         variant="elevated"
@@ -87,7 +78,7 @@ export default function Policycard(props: Policy) {
         {outputDate} {props.country}
         </Text>
       </Card>
-</LinearGradient>
+
     </Pressable>
   );
 }
